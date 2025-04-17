@@ -1,0 +1,44 @@
+import bpy
+import math
+
+# Clear existing objects
+bpy.ops.object.select_all(action='SELECT')
+bpy.ops.object.delete()
+
+# 1. Create central tower (thinner)
+bpy.ops.mesh.primitive_cylinder_add(
+    vertices=8,
+    radius=8,  # Reduced from 10
+    depth=120,
+    location=(0, 50, 60))
+obj = bpy.context.object
+obj.name = "building_central"
+
+# 2. Create tightly-packed side buildings
+for i in range(1, 6):
+    for side in [-1, 1]:
+        height = 120 - (20 * i)
+        radius = 10 - (1.5 * i)
+        x_pos = 15 * i * side  # Reduced spacing
+        
+        bpy.ops.mesh.primitive_cylinder_add(
+            vertices=8,
+            radius=radius,
+            depth=height,
+            location=(x_pos, 50, height/2))
+        obj = bpy.context.object
+        obj.name = "building_L{}".format(i) if side < 0 else "building_R{}".format(i)
+
+# 3. Add concert stage
+bpy.ops.mesh.primitive_plane_add(size=1, location=(0, 0, 0.5))
+stage = bpy.context.object
+stage.dimensions = (30, 20, 1)
+stage.name = "stage_main"
+
+# 4. Add camera
+bpy.ops.object.camera_add(location=(45, -65, 35))
+camera = bpy.context.object
+camera.rotation_euler = (math.radians(60), 0, math.radians(30))
+bpy.context.scene.camera = camera
+
+print("Done!")

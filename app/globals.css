@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Press+Start+2P&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 13, 13, 13;
+  --background-end-rgb: 26, 26, 46;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom,
+      rgb(var(--background-start-rgb)),
+      rgb(var(--background-end-rgb)));
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Font styles */
+.font-cyber {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+}
+
+.font-futuristic {
+  font-family: var(--font-rajdhani), 'Rajdhani', sans-serif;
+}
+
+.font-glitch {
+  font-family: 'Press Start 2P', cursive;
+}
+
+.font-mars {
+  font-family: var(--font-exo2), 'Exo 2', sans-serif;
+}
+
+/* Cyberpunk specific styles */
+.cyber-grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+  background-size: 80px 80px;
+  background-position: center center;
+}
+
+.cyber-border {
+  position: relative;
+  border: 1px solid rgba(0, 240, 255, 0.3);
+}
+
+.cyber-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  pointer-events: none;
+}
+
+.neon-text {
+  text-shadow: 0 0 5px #00F0FF, 0 0 10px #00F0FF;
+}
+
+.neon-text-red {
+  text-shadow: 0 0 5px #FF003C, 0 0 10px #FF003C, 0 0 15px #FF003C;
+}
+
+.glitch-text {
+  position: relative;
+  animation: glitch 1s infinite;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  color: #FF00FF;
+  z-index: -1;
+  animation: glitch 1.5s infinite;
+  animation-delay: 0.1s;
+}
+
+.glitch-text::after {
+  color: #00F0FF;
+  z-index: -2;
+  animation: glitch 2s infinite;
+  animation-delay: 0.2s;
+}
+
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: rgba(0, 240, 255, 0.2);
+  animation: scanline 6s linear infinite;
+  opacity: 0.7;
+  z-index: 20;
+}
+
+.hidden-konami {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.hidden-konami.active {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+/* Mars theme styles */
+.mars-dust-particle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 186, 8, 0.3);
+  animation: dust-float 15s linear infinite;
+}
+
+.mars-glow {
+  text-shadow: 0 0 8px rgba(232, 93, 4, 0.6);
+}
+
+.vhs-effect {
+  position: relative;
+}
+
+.vhs-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      transparent 51%,
+      rgba(0, 0, 0, 0.05) 100%);
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0.3;
+}
+
+/* Customizing scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1A1A2E;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00F0FF;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #BD00FF;
+}

@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-# fancy_portfolio
-=======
 # Cyberpunk Portfolio Website
 
 A visually stunning, cyberpunk-inspired personal portfolio website that showcases my skills and projects in an immersive, futuristic digital environment.
